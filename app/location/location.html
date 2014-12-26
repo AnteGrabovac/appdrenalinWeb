@@ -1,0 +1,21 @@
+  
+  <accordion close-others="true">
+  <div ng-repeat="group in groups">
+    <accordion-group is-open="status.open" class="locationList">
+	    <accordion-heading>
+			<div class="locationHeader">
+            {{group.title}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+			</div>
+        </accordion-heading>
+		<div class="locationImage">
+			<img ng-src="{{group.image}}">
+		</div>
+			<div class="sportContent"><div style="font-size:1.2em; color:red">Sportovi</div><div ng-repeat="sport in group.sports">
+	  <a style="margin-left:20px" ng-href="#Sport/{{sport.sportid}}"><span>{{sport.sportname}}</span></a>
+	   </div></div>
+      <div class="locationContent"><div style="font-size:1.2em; color:red">Podlokacije</div><div ng-repeat="geo in group.content">
+	  <a style="margin-left:20px" ng-href="#Location/{{geo.geolocationid}}"><span>{{geo.geolocationname}}</span></a>
+	   </div></div>
+    </accordion-group>
+	</div>
+  </accordion>

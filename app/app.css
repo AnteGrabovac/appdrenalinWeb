@@ -1,0 +1,278 @@
+/* app css stylesheet */
+
+.header {
+    text-allign:center;
+
+    padding:5px;
+
+	  border-bottom: 0.1em solid black;
+}
+
+img {
+float:left;
+}
+
+
+.main {
+position:relative;
+min-height:600px;
+}
+
+.left-bar {
+overflow:auto;
+background-color:orange;
+float:left;
+width:305px;
+height:600px;
+
+}
+
+.sidebar {
+	padding:20px;
+}
+
+.sidebarHeader {
+}
+.sidebarHeader A {
+	font-size:1.3em;
+}
+.sidebarHeader A:visited{
+	text-decoration:none;
+}
+.sidebarHeader A:hover{
+	text-decoration:none;
+}
+.sidebarHeader A:active{
+	text-decoration:none;
+}
+
+.locationHeader {
+border-radius:5px;
+background-color:cyan;
+}
+
+.locationList {
+}
+.locationList A {
+	font-size:1.5em;
+}
+.locationList A:visited{
+	text-decoration:none;
+}
+.locationList A:hover{
+	text-decoration:none;
+}
+.locationList A:active{
+	text-decoration:none;
+}
+
+.locationContent {
+padding:15px;
+background-color:pink;
+border-radius:15px;
+width:210px;
+margin-left:30px;
+display:inline-block;
+float:right;
+}
+.sportContent {
+padding:15px;
+background-color:orange;
+border-radius:15px;
+width:210px;
+margin-left:30px;
+display:inline-block;
+float:right;
+margin-right:20px;
+}
+
+.locationLink  {
+}
+.locationLink A {
+	font-size:1.3em;
+	color:magenta;
+	text-decoration: none;
+}
+.locationLink A:hover {
+	text-decoration: none;
+	color:black;
+}
+
+.window{
+border-right: 0.3em solid pink;
+overflow:auto;
+margin-left:350px;
+padding: 20px;
+	width:950px;
+	height:600px;
+}
+
+#map_canvas{}
+
+.map-canvas { height: 380px; 
+	border:0.3em solid grey;}
+.content{
+	width:800px;
+}
+
+.footer {
+background-color:red;
+}
+
+.menu {
+	background-color: #1E90FF;
+	font-size: 3em;
+  list-style: none;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.locationImage  {
+}
+.locationImage img {
+	position:relative;
+	 width: 250px;
+    height: auto;
+    -webkit-transition: all 0s ease;
+    -moz-transition: all 0s ease;
+	
+}
+.locationImage:hover img  {
+    width: 600px;
+    height: auto;
+    box-shadow: 0 0 10px #000;
+    z-index:2;
+	position:absolute;
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+}
+
+.geolocationTitle {
+	background-color: yellow;
+	font-size:2.2em;
+	border-radius:10px;
+	display:inline-block;
+	padding: 10px;
+}
+.geolocationContent {
+	border-top: 0.5em solid black;
+	padding: 20px;
+}
+
+.infoRow {
+	padding:10px;
+}
+.infoHeader {
+	color:red;
+	font-size:1.3em;
+}
+
+.infoContent {
+    font-size:1.5em;
+	margin-left:300px;
+	color: blue;
+}
+
+.userRow {	
+margin:10px;
+	padding: 5px;
+	border: 3px solid grey;
+	font-size:1.4em;
+	width:550px;
+	height:100px;
+	color:#6699FF;
+}
+.userRow a {
+text-decoration:none;
+}
+.userRow img {
+	height: 80px;
+	 width: 65px;	
+}
+.userRowData {
+width:300px;
+float:left;
+display:inline-block;
+}
+.userRowSports {
+ border-left: 3px solid grey;
+height:90px;
+padding-left:10px;
+ display:inline-block;
+
+}
+.userBox {
+	width:600px;
+	float:left;
+
+}
+.filterBox {
+	margin-left:600px;
+	font-size:1.5em;
+	color:blue;
+}
+
+#cssmenu {
+	border-radius:15px;
+  zoom: 1;
+  width: auto;
+  background: #000000;
+  padding: 8px 0;
+  margin-left:400px;
+}
+#cssmenu:before {
+  content: '';
+  display: block;
+}
+#cssmenu:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+#cssmenu ul {
+  list-style-type: none;
+  position: relative;
+  display: block;
+  font-size: 18px;
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid #7ab900;
+  zoom: 1;
+}
+#cssmenu ul:before {
+  content: '';
+  display: block;
+}
+#cssmenu ul:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+#cssmenu li {
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+#cssmenu li a {
+  float: left;
+  color: #A79787;
+  text-decoration: none;
+  height: 24px;
+  padding: 9px 15px 0;
+  font-weight: normal;
+}
+#cssmenu li:hover,
+#cssmenu .active {
+  text-decoration: none;
+  
+}
+#cssmenu li:hover a {
+  color: #fff;
+}
+#cssmenu .active a {
+  color: #fff;
+  font-weight: 700;
+}
+

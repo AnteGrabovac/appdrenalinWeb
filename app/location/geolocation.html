@@ -1,0 +1,38 @@
+﻿ <div class="geolocationTitle">
+{{geolocation.geolocationname}}
+</div>
+<div class="geolocationContent">
+  <tabset>
+  	<tab heading="Karta">
+	<section id="map" ng-if="loaded" ng-controller="GeolocationCtrl">
+		<div id="map_canvas" ui-map="model.myMap" ui-options="mapOptions" class="map-canvas"></div>
+	</section>
+	</tab>
+    <tab heading="Informacije">
+			<div class="locationImage">
+			<img style="margin-right:30px;border:5px solid grey" ng-src="{{geolocation.picturelocation}}">
+		</div>
+	<div class="infoRow"><div class="infoHeader">Područje</div>
+		<div class="infoContent">{{geolocation.locationname}}</div>
+	</div>
+		<div class="infoRow"><div class="infoHeader">Sportovi</div>
+		<div class="infoContent" ng-repeat="sport in geolocation.sports">{{sport.sportname}}</div>
+	</div>
+	</tab>
+
+	<tab heading="Posjetitelji">
+		<div class="userRow" ng-repeat="user in geolocation.users">
+		<div class="userRowData">
+		<img ng-src="{{user.picturelocation}}">
+		 <a style="padding-left:10px" ng-href="#User/{{user.userid}}"><span>{{user.username}} {{ user.usersurname}}</span></a>
+		 <div style="margin-left:80px;padding-top:10px">{{user.townname}}</div>
+		 </div>
+		 <div class="userRowSports">
+		 <div>{{user.sports[1].sportname}}</div>
+			<div>{{user.sports[2].sportname}}</div>
+			<div>{{user.sports[3].sportname}}</div>			</div>		 
+		</div>
+	</tab>	
+	<tab heading="Događaji">Static content</tab>
+  </tabset>
+</div>

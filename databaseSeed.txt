@@ -1,0 +1,13 @@
+insert into picture values (1, 'https://www.dropbox.com/s/q836g3445hxqy4n/sljeme.jpg?dl=1');
+insert into picture values (2, 'https://www.dropbox.com/s/ihkwj6lrqgeomt3/paklenica.jpg?dl=1');
+insert into picture values (3, 'https://www.dropbox.com/s/nrt93qatdfwc4pd/neo.png?dl=1');
+insert into picture values (4, 'https://www.dropbox.com/s/gnjypm0mjzj8xoa/morpheus.png?dl=1');
+insert into picture values (5, 'https://www.dropbox.com/s/j7l3cijauiwzviq/trinity.png?dl=1');
+insert into picture values (6, 'https://www.dropbox.com/s/koaw6b3a3rvuca1/smith.png?dl=1');
+
+update sport_location set locationpicture = 1 where locationid=1;
+update geo_location set geolocationpicture = 1 where geolocationid=1;
+update appdrenalin_user set userpicture = 3 where userid = 3;
+update appdrenalin_user set userpicture = 4 where userid = 4;
+update appdrenalin_user set userpicture = 5 where userid = 5;
+update appdrenalin_user set userpicture = 6 where userid = 6;
