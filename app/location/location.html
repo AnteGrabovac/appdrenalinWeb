@@ -1,21 +1,34 @@
-  
+﻿  <div style="margin-left:730px;padding-bottom:10px">
+	 <div class="btn-group" dropdown>
+      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+        {{countryTitle}} <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+		<li><a href ng-click="countryFilter()">Sve</a></li>
+        <li ng-repeat="country in countries"><a href ng-click="countryFilter(country)">{{country.countryname}}</a></li>
+      </ul>
+    </div></div>
+	
+	<div ng-if="locations.length == 0" style="font-size:1.5em">
+	Nema unesenih lokacija za navedenu državu</div>
   <accordion close-others="true">
-  <div ng-repeat="group in groups">
-    <accordion-group is-open="status.open" class="locationList">
+  <div ng-repeat="location in locations">
+    <accordion-group is-open="location.isOpen" class="locationList">
 	    <accordion-heading>
 			<div class="locationHeader">
-            {{group.title}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+            {{location.locationname}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': location.isOpen, 'glyphicon-chevron-right': !location.isOpen}"></i>
 			</div>
         </accordion-heading>
 		<div class="locationImage">
-			<img ng-src="{{group.image}}">
+			<img ng-src="{{location.picturelocation}}">
 		</div>
-			<div class="sportContent"><div style="font-size:1.2em; color:red">Sportovi</div><div ng-repeat="sport in group.sports">
-	  <a style="margin-left:20px" ng-href="#Sport/{{sport.sportid}}"><span>{{sport.sportname}}</span></a>
+			<div class="sportContent"><div style="font-size:1.2em; color:red">Sportovi</div><div ng-repeat="sport in location.sports">
+	  <div style="margin-left:20px;font-size:1.4em"><span>{{sport.sportname}}</span></div>
 	   </div></div>
-      <div class="locationContent"><div style="font-size:1.2em; color:red">Podlokacije</div><div ng-repeat="geo in group.content">
-	  <a style="margin-left:20px" ng-href="#Location/{{geo.geolocationid}}"><span>{{geo.geolocationname}}</span></a>
+      <div class="locationContent"><div style="font-size:1.2em; color:red">Podlokacije</div><div ng-repeat="geo in location.geolocations">
+	  <a style="margin-left:20px" ng-href="#Location/{{geo.geolocationid}}/"><span>{{geo.geolocationname}}</span></a>
 	   </div></div>
     </accordion-group>
 	</div>
   </accordion>
+

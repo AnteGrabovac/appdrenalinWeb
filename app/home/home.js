@@ -9,10 +9,10 @@ angular.module('myApp.home', ['ngRoute'])
   });
 }])
 
-.controller('HomeCtrl', ['$scope', 'Users', function($scope, Users) {
+.controller('HomeCtrl', ['$scope', 'Locations', function($scope, Locations) {
 	
-		Users.query(function(data) {
-		$scope.myVar  = data[1].sports[0].sportname;
+		Locations.query(function(locations) {
+			$scope.locations = locations.slice(0, 5);
 		});
 		
 }]);

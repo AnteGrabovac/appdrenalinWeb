@@ -7,10 +7,10 @@ angular.module('myApp', [
   'myApp.home',
   'ui.map',
   'myApp.user',
+  'myApp.auth',
   'myApp.location',
   'myApp.services',
   'myApp.sidebar',
-  'myApp.version',
   'ui.bootstrap'
 ]).
 

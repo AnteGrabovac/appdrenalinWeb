@@ -28,11 +28,24 @@
 		 <div style="margin-left:80px;padding-top:10px">{{user.townname}}</div>
 		 </div>
 		 <div class="userRowSports">
-		 <div>{{user.sports[1].sportname}}</div>
-			<div>{{user.sports[2].sportname}}</div>
-			<div>{{user.sports[3].sportname}}</div>			</div>		 
+		 <div>{{user.sports[0].sportname}}</div>
+			<div>{{user.sports[1].sportname}}</div>
+			<div style="display:inline-block;">{{user.sports[2].sportname}}</div>
+			<div style="float:right" ng-if="user.sports.length > 3">...</div>		</div>		 
 		</div>
-	</tab>	
-	<tab heading="Događaji">Static content</tab>
+	</tab>
+	<tab heading="Komentari">
+
+	<div>
+		<form  name="commentForm" ng-if="loggedUser.userid"
+      ng-submit="addComment(commentText)" novalidate> 
+	  <textarea class="commentForm" id="commentText" ng-model="commentText"></textarea>
+	    <button type="submit">Dodaj</button>
+	  </form></div>
+	  <div class="comment" ng-repeat="comment in geolocation.comments"> 
+		<a ng-href="#User/{{comment.userid}}"><span>{{comment.username}} {{ comment.usersurname}}</span></a>
+		--> {{ comment.commenttext}}
+	  </div>
+	</tab>
   </tabset>
 </div>

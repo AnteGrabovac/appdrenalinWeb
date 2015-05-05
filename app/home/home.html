@@ -1,9 +1,18 @@
-<p>This is the partial for view 1.</p>
+﻿  
 
-dgdg
-	{{myVar}}
-    <h4>Single toggle</h4>
-    <pre>{{myVar}}</pre>
-    <button type="button" class="btn btn-primary" ng-model="myVar" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
-        Single Toggle
-    </button>
+ <div class="homePage">
+	<div style="border:3px solid blue;display:inline-block;padding:5px;border-radius:5px">
+	Appdrenalin portal</div>
+	<div style="font-size:0.8em;padding-top:50px">Vaš izvor informacija o ekstremnim sportovima</div>
+  </div>
+  
+  <div style="height:410px;width:500px;border:5px solid grey;display:inline-block">
+    <carousel interval=4000>
+      <slide ng-repeat="location in locations" active="slide.active">
+        <img ng-src="{{location.picturelocation}}" style="height:400px;">
+        <div class="carousel-caption">
+          <p style="font-size:1.6em;">{{location.locationname}}</p>
+        </div>
+      </slide>
+    </carousel>
+  </div>

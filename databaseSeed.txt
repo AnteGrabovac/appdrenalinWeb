@@ -1,13 +1,35 @@
-insert into picture values (1, 'https://www.dropbox.com/s/q836g3445hxqy4n/sljeme.jpg?dl=1');
+﻿insert into picture values (1, 'https://www.dropbox.com/s/q836g3445hxqy4n/sljeme.jpg?dl=1');
 insert into picture values (2, 'https://www.dropbox.com/s/ihkwj6lrqgeomt3/paklenica.jpg?dl=1');
 insert into picture values (3, 'https://www.dropbox.com/s/nrt93qatdfwc4pd/neo.png?dl=1');
 insert into picture values (4, 'https://www.dropbox.com/s/gnjypm0mjzj8xoa/morpheus.png?dl=1');
 insert into picture values (5, 'https://www.dropbox.com/s/j7l3cijauiwzviq/trinity.png?dl=1');
 insert into picture values (6, 'https://www.dropbox.com/s/koaw6b3a3rvuca1/smith.png?dl=1');
+insert into picture values (7, 'https://www.dropbox.com/s/mwx016cndvcjnr0/badguy.png?dl=1');
+insert into picture values (8, 'https://www.dropbox.com/s/iths74vu1r7nuwn/agent.png?dl=1');
+insert into picture values (9, 'https://www.dropbox.com/s/6yv6l2dcu34o2ob/marjan.jpg?dl=1');
+insert into picture values (10, 'https://www.dropbox.com/s/qjp6861bnoi9has/risnjak.jpg?dl=1');
+insert into picture values (11, 'https://www.dropbox.com/s/482hl9pukxgknqq/dotr%C5%A1%C4%8Dina.JPG?dl=1');
+insert into picture values (12, 'https://www.dropbox.com/s/042u1nsvw3iw91f/pokojec.jpg?dl=1');
+
+insert into geo_location values(5, 'Dotršćina', 3, 45.859273, 16.013666, 11);
+insert into geo_location values(6, 'Pokojec', 6, 46.181400, 16.209453, 12);
+insert into sport_geo_location values (1, 5);
+insert into sport_geo_location values (2, 6);
+
+
+
 
 update sport_location set locationpicture = 1 where locationid=1;
+update sport_location set locationpicture = 2 where locationid=5;
+update sport_location set locationpicture = 9 where locationid=4;
+update sport_location set locationpicture = 10 where locationid=2;
+update sport_location set locationpicture = 11 where locationid=3;
+update sport_location set locationpicture = 12 where locationid=6;
 update geo_location set geolocationpicture = 1 where geolocationid=1;
-update appdrenalin_user set userpicture = 3 where userid = 3;
-update appdrenalin_user set userpicture = 4 where userid = 4;
-update appdrenalin_user set userpicture = 5 where userid = 5;
-update appdrenalin_user set userpicture = 6 where userid = 6;
+update appdrenalin_user set userpicture = 3 where userid = 1;
+update appdrenalin_user set userpicture = 4 where userid = 2;
+update appdrenalin_user set userpicture = 5 where userid = 3;
+update appdrenalin_user set userpicture = 6 where userid = 4;
+update appdrenalin_user set userpicture = 7 where userid = 5;
+update appdrenalin_user set userpicture = 8 where userid = 6;
+

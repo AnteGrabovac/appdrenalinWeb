@@ -12,15 +12,8 @@ angular.module('myApp.sidebar', [])
 .controller('SidebarCtrl', ['$scope', 'Sports', function($scope, Sports) {
  
 	Sports.query(function(sports) {
-		$scope.groups = [];
-		var i;
-		for(i=0;i<sports.length;++i) {
-			$scope.groups.push(
-			{
-			title: sports[i].sportname,
-			content: sports[i].sportid
-			});
-		}});
+		$scope.sports = sports;
+		});
 }])
 
 .controller('MenuCtrl', ['$scope', '$location', function($scope, $location) {

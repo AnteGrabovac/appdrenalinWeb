@@ -1,4 +1,5 @@
   <div class="userBox">
+		<div ng-if="!users.length" style="font-size:1.8em;"> Nema korisnika koji odovaraju kriterijima</div>
 		<div class="userRow" ng-repeat="user in users">
 		<div class="userRowData">
 		<img ng-src="{{user.picturelocation}}">
@@ -9,28 +10,41 @@
 		 <div>{{user.sports[0].sportname}}</div>
 			<div>{{user.sports[1].sportname}}</div>
 			<div style="display:inline-block;">{{user.sports[2].sportname}}</div>
-			<div style="float:right" ng-if="user.sports.length > 2">...</div>
+			<div style="float:right" ng-if="user.sports.length > 3">...</div>
 			</div>		 
 		</div>
 	</div>
 	<div class="filterBox">
-		<div>Filteri:</div>
-	    <div class="btn-group" dropdown is-open="status.isopen">
-      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+		<div style="padding-bottom:10px">Filteri:</div>
+	    <div class="btn-group" dropdown>
+      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
         {{sportTitle}} <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
 		<li><a href ng-click="sportFilter()">Svi</a></li>
         <li ng-repeat="sport in sports"><a href ng-click="sportFilter(sport)">{{sport.sportname}}</a></li>
       </ul>
-    </div>
-		    <div class="btn-group" dropdown is-open="status.isopen">
-      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-        {{sportTitle}} <span class="caret"></span>
+	  </div>
+	  <div style="padding-top:20px">
+	 <div class="btn-group" dropdown>
+      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+        {{countryTitle}} <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
-		<li><a href ng-click="sportFilter()">Svi</a></li>
-        <li ng-repeat="sport in sports"><a href ng-click="sportFilter(sport)">{{sport.sportname}}</a></li>
+		<li><a href ng-click="countryFilter()">Sve</a></li>
+        <li ng-repeat="country in countries"><a href ng-click="countryFilter(country)">{{country.countryname}}</a></li>
+      </ul>
+    </div></div>
+	<div>
+		 <div class="btn-group" dropdown>
+      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="!townDrop">
+        {{townTitle}} <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+		<li><a href ng-click="townFilter()">Svi</a></li>
+        <li ng-repeat="town in towns"><a href ng-click="townFilter(town)">{{town.townname}}</a></li>
       </ul>
     </div>
+	</div>
+	
 	</div>
