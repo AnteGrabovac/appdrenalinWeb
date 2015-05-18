@@ -7,9 +7,9 @@
 </div>
 <div class="profileMsg" ng-if="loggedUser.userid === user.userid">Moj profil - <button class="btn btn-default" ng-click="openEditForm()">Uredi</button>
 
-<div style="display:inline-block;pading-left:100px" flow-init="saveImage($flow)"
-     flow-files-submitted="saveImage($flow)"
-     flow-file-success="saveImage($flow)">
+<div style="display:inline-block;pading-left:100px" flow-init="saveImage($flow, true)"
+     flow-files-submitted="saveImage($flow, true)"
+     flow-file-success="saveImage($flow, true)">
 
   <button class="btn btn-default" flow-btn flow-attrs="{accept:'image/*'}">Dodaj novu profilnu sliku</button>
 
@@ -131,13 +131,57 @@
 	</tab>
 
 	<tab heading="Galerija">
-		<div ng-repeat="picture in user.gallery">
-		<div class="galleryFrame">
-			<div class="locationImage"><img class="galleryPicture" ng-src="{{picture.picturelocation}}"></div>
+
+	<button ng-if="!showGalleryForm && loggedUser.userid" class="btn btn-default" style="margin-left:70%; padding:5px" ng-click="openGalleryForm()">Dodaj novu sliku</button>
+
+	<div ng-if="showGalleryForm" style="margin-left:70%; padding:5px" flow-init="saveImage($flow, false)"
+     flow-files-submitted="saveImage($flow, false)"
+     flow-file-success="saveImage($flow, false)">
+
+  <button class="btn btn-default" flow-btn flow-attrs="{accept:'image/*'}">Odaberi sliku</button>
+
+  		<div style="display:inline-block">  
+	 <div style= "padding-bottom:10px" class="btn-group" dropdown>
+      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+        {{locationTitle}} <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li ng-repeat="location in locations"><a href ng-click="locationFilter(location)">{{location.locationname}}</a></li>
+      </ul>
+    </div>
+	<div>
+		 <div style= "padding-bottom:10px" class="btn-group" dropdown>
+      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+        {{geolocationTitle}} <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li ng-repeat="geolocation in geolocations"><a href ng-click="geolocationFilter(geolocation)">{{geolocation.geolocationname}}</a></li>
+      </ul>
+    </div>
+	</div>
+
+	</div>
+
+</div>
+
+	<div style="width:46%;  display:inline-block; ">
+		<div class="galleryFrame" ng-repeat="picture in user.galleryLeft">
+
+			<img class="galleryPicture" ng-src="{{picture.picturelocation}}">
 
 			<a class="galleryLink" ng-href="#Location/{{picture.geolocationid}}"><span>{{picture.geolocationname}} </span></a>
 		</div>
 		</div>
+
+			<div style="width:46%;  float:right; display:inline-block">
+				<div class="galleryFrame" ng-repeat="picture in user.galleryRight">
+
+			<img class="galleryPicture" ng-src="{{picture.picturelocation}}">
+
+			<a class="galleryLink" ng-href="#Location/{{picture.geolocationid}}"><span>{{picture.geolocationname}} </span></a>
+		</div>
+		</div>
+
 	</tab>
 
   </tabset>

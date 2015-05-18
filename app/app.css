@@ -277,16 +277,19 @@ padding-left:10px;
 }
 
 .galleryPicture  {
-	width:auto;
-	height:200px;
+	width:60%;
+	height:100%;
+	float:left;
+	display:inline-block;
 	border:3px solid #6699FF;
 	
 }
 
 .galleryFrame {
 	height:193px;
-	width: 50%;
-	
+
+	padding-top:15px;
+
 	font-size: 1.3em;
 }
 .galleryLink {

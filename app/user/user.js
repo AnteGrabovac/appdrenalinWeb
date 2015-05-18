@@ -15,12 +15,12 @@ angular.module('myApp.user', ['ui.map'])
 	});
 }])
 
- .config(['DropboxProvider', function (DropboxProvider) {
-    DropboxProvider.config('xs1oj3asat10fkt', 'http://localhost:8000/bower_components/ngDropbox/callback.html');
- }])
+.config(['DropboxProvider', function(DropboxProvider) {
+	DropboxProvider.config('xs1oj3asat10fkt', 'http://localhost:8000/bower_components/ngDropbox/callback.html');
+}])
 
-.controller('ProfileCtrl', ['$scope', 'Users', '$routeParams', 'Sports', 'Countries', '$modal', 'Dropbox', 'UserProfilePicture', 'Profile', 'UserPrivacy', 'UsersProfile',
-	function($scope, Users, $routeParams, Sports, Countries, $modal, Dropbox, UserProfilePicture, Profile, UserPrivacy, UsersProfile) {
+.controller('ProfileCtrl', ['$scope', 'Users', '$routeParams', 'Sports', 'Countries', '$modal', 'Dropbox', 'UserProfilePicture', 'Profile', 'UserPrivacy', 'UsersProfile', 'Locations', 'UserGallery',
+	function($scope, Users, $routeParams, Sports, Countries, $modal, Dropbox, UserProfilePicture, Profile, UserPrivacy, UsersProfile, Locations, UserGallery) {
 		$scope.model = {};
 		var map;
 		var i;
@@ -29,6 +29,7 @@ angular.module('myApp.user', ['ui.map'])
 		$scope.townTitle = "Grad";
 		$scope.towns;
 		$scope.townDrop = false;
+		$scope.showGalleryForm = false;
 
 		if ($scope.loggedUser && $scope.loggedUser.userid == $routeParams.id)
 			UsersGetter = UsersProfile;
@@ -41,17 +42,28 @@ angular.module('myApp.user', ['ui.map'])
 
 			if (!user.userid) {
 				$scope.privacy = true;
-			}
-			else {
+			} else {
 				$scope.privacy = false;
 				user.events.forEach(function(event) {
 					event.eventdate = new Date(event.eventdate).toLocaleString('hr-HR').split(' ')[0];
 				});
+				var i = 0;
+				user.galleryRight = [];
+				user.galleryLeft = [];
+				user.gallery.forEach(function(picture) {
+					if (i % 2) {
+						user.galleryRight.push(picture);
+					} else {
+						user.galleryLeft.push(picture);
+					}
+					i++;
+				});
+
 				$scope.user = user;
 
 				if (user.userprivacy === true)
 					$scope.radioModel = 'Private';
-				else 
+				else
 					$scope.radioModel = 'Public';
 
 				$scope.mapOptions = {
@@ -71,9 +83,29 @@ angular.module('myApp.user', ['ui.map'])
 				}
 
 				$scope.loaded = true;
-		}
+			}
+		});
+
+		Locations.query(function(locations) {
+			$scope.locations = locations;
+			$scope.locationTitle = locations[0].locationname;
+			$scope.geolocationTitle = locations[0].geolocations[0].geolocationname;
+			$scope.selectedGeolocation = locations[0].geolocations[0];
+			$scope.geolocations = locations[0].geolocations;
 
 		});
+
+		$scope.locationFilter = function(location) {
+			$scope.locationTitle = location.locationname;
+			$scope.geolocationTitle = location.geolocations[0].geolocationname;
+			$scope.selectedGeolocation = location.geolocations[0];
+			$scope.geolocations = location.geolocations;
+		};
+
+		$scope.geolocationFilter = function(geolocation) {
+			$scope.geolocationTitle = geolocation.geolocationname;
+			$scope.selectedGeolocation = geolocation;
+		};
 
 		$scope.openEditForm = function() {
 			Sports.query(function(sports) {
@@ -98,50 +130,87 @@ angular.module('myApp.user', ['ui.map'])
 		});
 
 		$scope.editProfile = function() {
-			Profile.edit({id: $scope.user.userid}, $scope.user);
+			Profile.edit({
+				id: $scope.user.userid
+			}, $scope.user);
 			$scope.edit = false;
 		};
 
-		$scope.saveImage = function(flow) {
+		$scope.saveImage = function(flow, profile) {
 			if (flow) {
 				var reader = new FileReader();
 				reader.onloadend = function() {
 					$scope.img = reader.result;
 					var imgData = _base64ToArrayBuffer($scope.img);
-					Dropbox.setCredentials({access_token: 'MmJTF8LROsAAAAAAAAAAL6iWYjOemlM6v_-TaAnV96a6KqBSE2WEjcO_uca54B0I'});
-					var imgUrl = '/img/' + $scope.user.userid + '/profilePicture.png';
+					Dropbox.setCredentials({
+						access_token: 'MmJTF8LROsAAAAAAAAAAL6iWYjOemlM6v_-TaAnV96a6KqBSE2WEjcO_uca54B0I'
+					});
+					var imgUrl = '/img/' + $scope.user.userid + '/' + $scope.fileName;
 					Dropbox.writeFile(imgUrl, imgData).then(function() {
-						Dropbox.makeUrl(imgUrl, {short_url: false}).then(function(res) {
+						Dropbox.makeUrl(imgUrl, {
+							short_url: false
+						}).then(function(res) {
 							var url = res.url.substring(0, res.url.length - 1) + '1';
-							$scope.user.picturelocation = url;
-							UserProfilePicture.change({id : $scope.user.userid}, {url: url});
+							if (profile) {
+								$scope.user.picturelocation = url;
+								UserProfilePicture.change({
+									id: $scope.user.userid
+								}, {
+									url: url
+								});
+							} else {
+								UserGallery.add({
+									id: $scope.user.userid
+								}, {
+									url: url,
+									locationid: $scope.selectedGeolocation.geolocationid
+								});
+							}
 						});
 					});
 
 				};
 				var file = flow.files[0].file;
+				$scope.fileName = flow.files[0].name;
 				reader.readAsDataURL(file);
 			}
 		};
 
 		function _base64ToArrayBuffer(base64) {
-    		base64 = base64.split('data:image/png;base64,').join('');
-    		var binary_string =  window.atob(base64),
-        		len = binary_string.length,
-        		bytes = new Uint8Array( len ),
-        		i;
+			var type = base64.split(';')[0];
+			if (type === 'data:image/png')
+				base64 = base64.split('data:image/png;base64,').join('');
+			else if (type === 'data:image/jpeg')
+				base64 = base64.split('data:image/jpeg;base64,').join('');
 
-    		for (i = 0; i < len; i++)        {
-        		bytes[i] = binary_string.charCodeAt(i);
-    		}
-    		return bytes.buffer;
+			var binary_string = window.atob(base64),
+				len = binary_string.length,
+				bytes = new Uint8Array(len),
+				i;
+
+			for (i = 0; i < len; i++) {
+				bytes[i] = binary_string.charCodeAt(i);
+			}
+			return bytes.buffer;
 		};
 
 		$scope.changeUserPrivacy = function() {
 			if ($scope.radioModel === 'Public')
-				UserPrivacy.change({id: $scope.user.userid}, {privacy:'false'});
+				UserPrivacy.change({
+					id: $scope.user.userid
+				}, {
+					privacy: 'false'
+				});
 			else if ($scope.radioModel === 'Private')
-				UserPrivacy.change({id: $scope.user.userid}, {privacy:'true'});
+				UserPrivacy.change({
+					id: $scope.user.userid
+				}, {
+					privacy: 'true'
+				});
+		};
+
+		$scope.openGalleryForm = function() {
+			$scope.showGalleryForm = true;
 		};
 
 		$scope.addSport = function(sport) {

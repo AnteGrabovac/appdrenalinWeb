@@ -62,6 +62,12 @@ angular.module('myApp.services', [])
 					);
 }])
 
+.service('UserGallery', ['$resource', function($resource) {
+	return $resource('https://appdrenalin.herokuapp.com/api/users/:id/gallery',
+					null, {'add' : { method:'POST'}}
+					);
+}])
+
 .service('UserEvent', ['$resource', function($resource) {
 	return $resource('https://appdrenalin.herokuapp.com/api/users/:userid/events/:eventid',
 					null, {'attend' : { method:'POST'}}
