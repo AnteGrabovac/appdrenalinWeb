@@ -4,6 +4,9 @@
 angular.module('myApp', [
   'ngRoute',
   'ngResource',
+  'ngMessages',
+  'dropbox',
+  'flow',
   'myApp.home',
   'ui.map',
   'myApp.user',
@@ -11,6 +14,7 @@ angular.module('myApp', [
   'myApp.location',
   'myApp.services',
   'myApp.sidebar',
+  'myApp.event',
   'ui.bootstrap'
 ]).
 

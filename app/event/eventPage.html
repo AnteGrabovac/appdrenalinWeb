@@ -1,0 +1,89 @@
+ <div style="display:inline-block" class="geolocationTitle">
+<a style="padding-left:10px" ng-href="#Location/{{event.location.geolocationid}}"><span>{{event.location.geolocationname}} </span></a> -  {{event.eventname}} 
+</div>
+
+ <div style="padding-top:10px; margin-left:30%" ng-if="loggedUser.userid" class="btn-group" dropdown>
+      <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+        {{selectedRSVP}} <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li ng-repeat="rsvps in rsvp"><a href ng-click="userAttend(rsvps)">{{rsvps.rsvpname}}</a></li>
+      </ul>
+   </div>
+
+<div class="geolocationContent">
+  <tabset>
+  	<tab heading="Karta">
+	<section id="map" ng-if="loaded" ng-controller="EventPageCtrl">
+		<div id="map_canvas" ui-map="model.myMap" ui-options="mapOptions" class="map-canvas"></div>
+	</section>
+	</tab>
+
+	    <tab heading="Informacije">
+			<div class="locationImage">
+			<img style="margin-right:30px;border:5px solid grey" ng-src="{{event.location.picturelocation}}">
+		</div>
+		
+	<div class="infoRow"><div class="infoHeader">Područje</div>
+		<div class="infoContent">{{event.location.locationname}}</div>
+	</div>
+	<div class="infoRow"><div class="infoHeader">Lokacija</div>
+		<div class="infoContent">{{event.location.geolocationname}}</div>
+	</div>
+	<div class="infoRow"><div class="infoHeader">Sport</div>
+		<div class="infoContent">{{event.sportname}}</div>
+	</div>
+	
+			
+		<div class="infoRow"><div class="infoHeader">Vrijeme održavanja</div>
+		<div class="userInfoContent">{{event.eventdate}}</div>
+	</div>
+
+	
+	</tab>
+
+		<tab ng-if="past" heading="Posjetitelji">
+
+		<div class="userRow" ng-repeat="user in event.users">
+		<div class="userRowData">
+		<img ng-src="{{user.picturelocation}}">
+		 <a style="padding-left:10px" ng-href="#User/{{user.userid}}"><span>{{user.username}} {{ user.usersurname}}</span></a>
+		 <div style="margin-left:80px;padding-top:10px">{{user.townname}}</div>
+		 </div>
+		 <div class="userRowSports">
+		 <div>{{user.sports[0].sportname}}</div>
+			<div>{{user.sports[1].sportname}}</div>
+			<div style="display:inline-block;">{{user.sports[2].sportname}}</div>
+			<div style="float:right" ng-if="user.sports.length > 3">...</div>		</div>		 
+		</div>
+	</tab>
+
+			<tab ng-if="!past" heading="Najave dolazaka">
+		<div class="userRow" ng-repeat="user in event.users">
+		<div class="userRowData">
+		<img ng-src="{{user.picturelocation}}">
+		 <a style="padding-left:10px" ng-href="#User/{{user.userid}}"><span>{{user.username}} {{ user.usersurname}}</span></a>
+		 <div style="margin-left:80px;padding-top:10px">{{user.townname}}</div>
+		 </div>
+		 <div class="userRowSports">
+		 <div>{{user.rsvpname}}</div>
+		</div>	
+
+		</div>
+	</tab>
+
+	<tab heading="Komentari">
+
+	<div>
+		<form  name="commentForm" ng-if="loggedUser.userid"
+      ng-submit="addComment(commentText)" novalidate> 
+	  <textarea class="commentForm" id="commentText" ng-model="commentText"></textarea>
+	    <button type="submit">Dodaj</button>
+	  </form></div>
+	  <div class="comment" ng-repeat="comment in event.comments"> 
+		<a ng-href="#User/{{comment.userid}}"><span>{{comment.username}} {{ comment.usersurname}}</span></a>
+		--> {{ comment.commenttext}}
+	  </div>
+	</tab>
+	</tabset>
+	</div>

@@ -1,8 +1,28 @@
-﻿  <div class="profileTitle">
+﻿  <div ng-show="privacy" class="profilePrivacyMsg" >Profil je privatan</div>
+  <div ng-show="!privacy">
+  <div class="profileTitle">
  <img class="profilePicture" ng-src="{{user.picturelocation}}">
 <div class="profileText">
 {{user.username}} {{ user.usersurname}}
-</div></div>
+</div>
+<div class="profileMsg" ng-if="loggedUser.userid === user.userid">Moj profil - <button class="btn btn-default" ng-click="openEditForm()">Uredi</button>
+
+<div style="display:inline-block;pading-left:100px" flow-init="saveImage($flow)"
+     flow-files-submitted="saveImage($flow)"
+     flow-file-success="saveImage($flow)">
+
+  <button class="btn btn-default" flow-btn flow-attrs="{accept:'image/*'}">Dodaj novu profilnu sliku</button>
+
+</div>
+
+    <div style="margin-left:50px" class="btn-group">
+        <label class="btn btn-primary" ng-model="$parent.radioModel" btn-radio="'Public'">Javan</label>
+        <label class="btn btn-primary" ng-model="$parent.radioModel" btn-radio="'Private'">Privatan</label>
+    </div>
+<button class="btn btn-default" ng-click="changeUserPrivacy()">Spremi</button>
+
+</div>
+</div>
 <div class="geolocationContent">
   <tabset>
 	  	<tab heading="Posjećene lokacije">
@@ -16,30 +36,110 @@
 	</section>
 	</tab>
     <tab heading="Informacije">
+	<form name="editForm" ng-controller="ProfileCtrl"
+      ng-submit="editProfile()">
+
 	<div style="width:350px;float:left">
 		<div class="infoRow"><div class="infoHeader">Ime</div>
-		<div class="userInfoContent">{{user.username}}</div>
+		<div ng-if="!edit" class="userInfoContent">{{user.username}}</div>
+		 <input ng-show="edit" type="text" id="name" name="name" ng-model="user.username" required>
 	</div>
 		<div class="infoRow"><div class="infoHeader">Prezime</div>
-		<div class="userInfoContent" >{{user.usersurname}}</div>
+		<div ng-if="!edit" class="userInfoContent" >{{user.usersurname}}</div>
+		<input ng-if="edit" type="text" id="surname" name="surname" ng-model="user.usersurname" required>
 	</div>
 			<div class="infoRow"><div class="infoHeader">Email</div>
-		<div class="userInfoContent" >{{user.useremail}}</div>
+		<div ng-if="!edit" class="userInfoContent" >{{user.useremail}}</div>
+		<input ng-if="edit" type="email" id="email" name="email" ng-model="user.useremail" required>
 	</div>
+	<button ng-if="edit" type="submit">Spremi</button>
 	</div>
 	
 		<div style="margin-left:350px;border-left:3px solid grey">
+		
+		<div style="display:inline-block">
 		<div class="infoRow"><div class="infoHeader">Grad</div>
-		<div class="userInfoContent">{{user.townname}}</div>
+		<div  class="userInfoContent">{{user.townname}}</div>
 	</div>
 		<div class="infoRow"><div class="infoHeader">Država</div>
-		<div class="userInfoContent" >{{user.countryname}}</div>
+		<div  class="userInfoContent" >{{user.countryname}}</div>
 	</div>
+	</div>
+
+		<div ng-if="edit" style="display:inline-block">  
+	 <div style= "padding-bottom:10px" class="btn-group" dropdown>
+      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+        {{countryTitle}} <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li ng-repeat="country in countries"><a href ng-click="countryFilter(country)">{{country.countryname}}</a></li>
+      </ul>
+    </div>
+	<div>
+		 <div style= "padding-bottom:10px" class="btn-group" dropdown>
+      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="!townDrop">
+        {{townTitle}} <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li ng-repeat="town in towns"><a href ng-click="townFilter(town)">{{town.townname}}</a></li>
+      </ul>
+    </div>
+	</div>
+	<button class="btn btn-default" ng-click="changeUserTown()">Spremi grad</button>
+	</div>
+
+	
+
 			<div class="infoRow"><div class="infoHeader">Sportovi</div>
-		<div class="userInfoContent" ng-repeat="sport in user.sports">{{sport.sportname}}</div>
+		<div  class="userInfoContent" ng-repeat="sport in user.sports">{{sport.sportname}} 
+
+		<a ng-if="edit" class="clear" ng-click="removeSport(sport)">
+    <span class="glyphicon glyphicon-remove"></span>
+</a> 
+
+</div>
+
+			    <div style="padding-top:10px" ng-if="edit" class="btn-group" dropdown>
+      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+        {{sportTitle}} <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li ng-repeat="sport in sports"><a href ng-click="addSport(sport)">{{sport.sportname}}</a></li>
+      </ul>
+	  </div>
+
 	</div>
 	</div>
+
+	</form>
+	</tab>
+
+		<tab heading="Događanja">
+		<div class="eventBox" ng-repeat="event in user.events">
+
+			<div> 
+		<div class="eventTitle"> <a ng-href="#Event/{{event.eventid}}"><span>{{event.eventname}} </span></a> </div>
+		<div class="eventDate"> {{event.eventdate}} </div>
+		</div>
+
+		<div>
+			<div class="eventSport"><div>{{event.geolocationname}}</div>{{event.sportname}} </div> 
+			<div class="eventText"> {{event.eventtext}}</div>
+		</div>
+
+		</div>
+	</tab>
+
+	<tab heading="Galerija">
+		<div ng-repeat="picture in user.gallery">
+		<div class="galleryFrame">
+			<div class="locationImage"><img class="galleryPicture" ng-src="{{picture.picturelocation}}"></div>
+
+			<a class="galleryLink" ng-href="#Location/{{picture.geolocationid}}"><span>{{picture.geolocationname}} </span></a>
+		</div>
+		</div>
 	</tab>
 
   </tabset>
+</div>
 </div>

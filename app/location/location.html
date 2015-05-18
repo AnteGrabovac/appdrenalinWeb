@@ -1,4 +1,4 @@
-﻿  <div style="margin-left:730px;padding-bottom:10px">
+﻿  <div style="margin-left:80%;padding-bottom:10px">
 	 <div class="btn-group" dropdown>
       <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
         {{countryTitle}} <span class="caret"></span>
@@ -11,6 +11,7 @@
 	
 	<div ng-if="locations.length == 0" style="font-size:1.5em">
 	Nema unesenih lokacija za navedenu državu</div>
+	<div class="locationWrapper">
   <accordion close-others="true">
   <div ng-repeat="location in locations">
     <accordion-group is-open="location.isOpen" class="locationList">
@@ -30,5 +31,5 @@
 	   </div></div>
     </accordion-group>
 	</div>
-  </accordion>
+  </accordion></div>
 

@@ -15,11 +15,16 @@ angular.module('myApp.location', ['ui.map'])
   });
 }])
  
-.controller('GeolocationCtrl', ['$scope', 'Geolocations', '$routeParams', 'GeolocationComments',
-					function($scope, Geolocations, $routeParams, GeolocationComments) {
+.controller('GeolocationCtrl', ['$scope', 'Geolocations', '$routeParams', 'GeolocationComments', 'UserLocation', 
+					function($scope, Geolocations, $routeParams, GeolocationComments, UserLocation) {
 			$scope.model = {};
 			var map;
+
 			Geolocations.get({id : $routeParams.id}, function(geolocation) {
+
+				geolocation.events.forEach(function(event){
+					event.eventdate = new Date(event.eventdate).toLocaleString('hr-HR');
+				});
 				$scope.geolocation = geolocation;
 							
 					    $scope.mapOptions = {
@@ -46,6 +51,10 @@ angular.module('myApp.location', ['ui.map'])
 				Geolocations.get({id : $routeParams.id}, function(geolocation) {
 					$scope.geolocation.comments = geolocation.comments;
 				});
+			};
+
+			$scope.addLocationToUser = function() {
+				UserLocation.add({id : $scope.loggedUser.userid}, {locationid: $scope.geolocation.geolocationid});
 			};
 						
 }])

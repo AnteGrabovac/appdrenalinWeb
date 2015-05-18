@@ -19,12 +19,12 @@ insert into sport_geo_location values (2, 6);
 
 
 
-update sport_location set locationpicture = 1 where locationid=1;
-update sport_location set locationpicture = 2 where locationid=5;
-update sport_location set locationpicture = 9 where locationid=4;
-update sport_location set locationpicture = 10 where locationid=2;
-update sport_location set locationpicture = 11 where locationid=3;
-update sport_location set locationpicture = 12 where locationid=6;
+update location set locationpicture = 1 where locationid=1;
+update location set locationpicture = 2 where locationid=5;
+update location set locationpicture = 9 where locationid=4;
+update location set locationpicture = 10 where locationid=2;
+update location set locationpicture = 11 where locationid=3;
+update location set locationpicture = 12 where locationid=6;
 update geo_location set geolocationpicture = 1 where geolocationid=1;
 update appdrenalin_user set userpicture = 3 where userid = 1;
 update appdrenalin_user set userpicture = 4 where userid = 2;

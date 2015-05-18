@@ -1,0 +1,37 @@
+<form  style="margin-left:20%;margin-top:5%" name="registerForm" ng-controller="LoginCtrl"
+      ng-submit="register(registerData)">
+
+<div class = "registrationFormLeft">
+<div>
+  <label style= "margin-right:29px" for="name">Ime:</label>
+  <input  type="text" id="name" name="name"
+         ng-model="registerData.name" required>
+</div><div style="padding-top:10px">
+           <label for="surname">Prezime:</label>
+  <input type="text" id="surname"
+         ng-model="registerData.surname" required>
+</div></div>
+
+
+
+<div class = "registrationFormRight">
+		<div>
+  <label style= "margin-right:17px" for="newemail">Email:</label>
+  <input type="text" id="newemail"
+         ng-model="registerData.email" required>
+         	</div>
+
+      <div style="padding-top:10px">
+  <label for="newpassword">Lozinka:</label>
+  <input type="newpassword" id="password"
+         ng-model="registerData.password" required>
+         </div>
+         <span ng-if="mailAlert">Već postoji korisnik sa unesenom email adresom!</span>
+</div>
+
+  <button type="submit">Prihvati</button></div>
+<div>
+
+
+
+</form>

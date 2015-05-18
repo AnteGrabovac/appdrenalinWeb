@@ -1,6 +1,12 @@
 ﻿'use strict';
 angular.module('myApp.auth', [])
 
+.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/Register', {
+    templateUrl: 'auth/register.html',
+    controller: 'LoginCtrl'
+  });
+}])
 
 .service('Session', function () {
   this.create = function (newUser) {
@@ -12,19 +18,24 @@ angular.module('myApp.auth', [])
   return this;
 })
 
-.controller('LoginCtrl', ['$scope', 'Login', 'Session', '$modal', '$rootScope',
-					function($scope, Login, Session, $modal, $rootScope) {
+.controller('LoginCtrl', ['$scope', 'Login', 'Session', '$modal', '$rootScope', '$location', 'Register',
+					function($scope, Login, Session, $modal, $rootScope, $location, Register) {
 		$scope.loginData = {
 			email: '',
 			password: ''
 		};
 		$rootScope.showForm=true;
+		$scope.edit = false;
 		$rootScope.loggedUser = Session.user;
 		$scope.openLoginForm = function() {
 			$scope.modal = $modal.open({
 				templateUrl: 'auth/loginForm.html',
 				scope: $scope
 			})
+		};
+
+		$scope.openRegistrationForm = function() {
+			$location.path('/Register');
 		};
 
 		$scope.alerts = [];
@@ -53,4 +64,21 @@ angular.module('myApp.auth', [])
 			if (!$rootScope.showForm)
 				$scope.modal.dismiss();
 		};
+
+		$scope.register = function(registerData) {
+				Register.register(registerData, function(response) {
+					if (response.userid != null) {
+						Session.create(response);
+						$rootScope.loggedUser = Session.user;
+						$location.path('/User/' + response.userid);
+					}
+					else
+						$scope.modal = $modal.open({
+							templateUrl: 'auth/emailMessage.html',
+							scope: $scope
+						})
+				});
+		};
+
+
 }]);

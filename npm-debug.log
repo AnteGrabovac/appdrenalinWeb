@@ -2,14 +2,14 @@
 1 verbose cli [ 'c:\\Program Files\\nodejs\\node.exe',
 1 verbose cli   'c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
 1 verbose cli   'install',
-1 verbose cli   'angular-bootstrap' ]
+1 verbose cli   'undescore' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.33
-4 warn package.json karma-phantomjs-launcher@0.1.4 No README data
-5 warn package.json karma-chrome-launcher@0.1.7 No README data
+4 warn package.json karma-chrome-launcher@0.1.7 No README data
+5 warn package.json karma-phantomjs-launcher@0.1.4 No README data
 6 verbose readDependencies using package.json deps
-7 verbose cache add [ 'angular-bootstrap', null ]
-8 verbose cache add name=undefined spec="angular-bootstrap" args=["angular-bootstrap",null]
+7 verbose cache add [ 'undescore', null ]
+8 verbose cache add name=undefined spec="undescore" args=["undescore",null]
 9 verbose parsed url { protocol: null,
 9 verbose parsed url   slashes: null,
 9 verbose parsed url   auth: null,
@@ -19,59 +19,69 @@
 9 verbose parsed url   hash: null,
 9 verbose parsed url   search: null,
 9 verbose parsed url   query: null,
-9 verbose parsed url   pathname: 'angular-bootstrap',
-9 verbose parsed url   path: 'angular-bootstrap',
-9 verbose parsed url   href: 'angular-bootstrap' }
-10 silly lockFile 75c42a0c-angular-bootstrap angular-bootstrap
-11 verbose lock angular-bootstrap C:\Users\Ante\AppData\Roaming\npm-cache\75c42a0c-angular-bootstrap.lock
-12 silly lockFile 75c42a0c-angular-bootstrap angular-bootstrap
-13 silly lockFile 75c42a0c-angular-bootstrap angular-bootstrap
-14 verbose addNamed [ 'angular-bootstrap', '' ]
+9 verbose parsed url   pathname: 'undescore',
+9 verbose parsed url   path: 'undescore',
+9 verbose parsed url   href: 'undescore' }
+10 silly lockFile f8c729fc-undescore undescore
+11 verbose lock undescore C:\Users\Ante\AppData\Roaming\npm-cache\f8c729fc-undescore.lock
+12 silly lockFile f8c729fc-undescore undescore
+13 silly lockFile f8c729fc-undescore undescore
+14 verbose addNamed [ 'undescore', '' ]
 15 verbose addNamed [ null, '*' ]
-16 silly lockFile eebb98d0-angular-bootstrap angular-bootstrap@
-17 verbose lock angular-bootstrap@ C:\Users\Ante\AppData\Roaming\npm-cache\eebb98d0-angular-bootstrap.lock
-18 silly addNameRange { name: 'angular-bootstrap', range: '*', hasData: false }
-19 verbose request where is /angular-bootstrap
+16 silly lockFile 89b0aac4-undescore undescore@
+17 verbose lock undescore@ C:\Users\Ante\AppData\Roaming\npm-cache\89b0aac4-undescore.lock
+18 silly addNameRange { name: 'undescore', range: '*', hasData: false }
+19 verbose request where is /undescore
 20 verbose request registry https://registry.npmjs.org/
-21 verbose request id 19e4f416c9626e09
-22 verbose url raw /angular-bootstrap
-23 verbose url resolving [ 'https://registry.npmjs.org/', './angular-bootstrap' ]
-24 verbose url resolved https://registry.npmjs.org/angular-bootstrap
-25 verbose request where is https://registry.npmjs.org/angular-bootstrap
-26 info trying registry request attempt 1 at 16:58:45
-27 http GET https://registry.npmjs.org/angular-bootstrap
-28 http 404 https://registry.npmjs.org/angular-bootstrap
-29 silly registry.get cb [ 404,
-29 silly registry.get   { date: 'Sun, 14 Dec 2014 15:58:44 GMT',
-29 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-29 silly registry.get     etag: '"75A5CM87ZDKXM40LKQ87286R9"',
-29 silly registry.get     'content-type': 'application/json',
-29 silly registry.get     'cache-control': 'max-age=0',
-29 silly registry.get     'content-length': '715',
-29 silly registry.get     'accept-ranges': 'bytes',
-29 silly registry.get     via: '1.1 varnish',
-29 silly registry.get     age: '0',
-29 silly registry.get     'x-served-by': 'cache-fra1240-FRA',
-29 silly registry.get     'x-cache': 'MISS',
-29 silly registry.get     'x-cache-hits': '0',
-29 silly registry.get     'x-timer': 'S1418572724.842640,VS0,VE102',
-29 silly registry.get     vary: 'Accept',
-29 silly registry.get     'keep-alive': 'timeout=10, max=50',
-29 silly registry.get     connection: 'Keep-Alive' } ]
-30 silly lockFile eebb98d0-angular-bootstrap angular-bootstrap@
-31 silly lockFile eebb98d0-angular-bootstrap angular-bootstrap@
-32 error 404 Not Found
-32 error 404
-32 error 404 'angular-bootstrap' is not in the npm registry.
-32 error 404 You should bug the author to publish it
-32 error 404 It was specified as a dependency of 'angular-seed'
-32 error 404
-32 error 404 Note that you can also install from a
-32 error 404 tarball, folder, or http url, or git url.
-33 error System Windows_NT 6.1.7601
-34 error command "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "angular-bootstrap"
-35 error cwd c:\Users\Ante\angular-seed
-36 error node -v v0.10.33
-37 error npm -v 1.4.28
-38 error code E404
-39 verbose exit [ 1, true ]
+21 verbose request id b49f3000ba678e32
+22 verbose url raw /undescore
+23 verbose url resolving [ 'https://registry.npmjs.org/', './undescore' ]
+24 verbose url resolved https://registry.npmjs.org/undescore
+25 verbose request where is https://registry.npmjs.org/undescore
+26 info trying registry request attempt 1 at 21:37:10
+27 http GET https://registry.npmjs.org/undescore
+28 http 404 https://registry.npmjs.org/undescore
+29 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+29 verbose headers   'content-type': 'application/json',
+29 verbose headers   'cache-control': 'max-age=0',
+29 verbose headers   'content-length': '51',
+29 verbose headers   'accept-ranges': 'bytes',
+29 verbose headers   date: 'Mon, 11 May 2015 19:37:10 GMT',
+29 verbose headers   via: '1.1 varnish',
+29 verbose headers   age: '0',
+29 verbose headers   connection: 'keep-alive',
+29 verbose headers   'x-served-by': 'cache-fra1243-FRA',
+29 verbose headers   'x-cache': 'MISS',
+29 verbose headers   'x-cache-hits': '0',
+29 verbose headers   'x-timer': 'S1431373029.599608,VS0,VE427' }
+30 silly registry.get cb [ 404,
+30 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+30 silly registry.get     'content-type': 'application/json',
+30 silly registry.get     'cache-control': 'max-age=0',
+30 silly registry.get     'content-length': '51',
+30 silly registry.get     'accept-ranges': 'bytes',
+30 silly registry.get     date: 'Mon, 11 May 2015 19:37:10 GMT',
+30 silly registry.get     via: '1.1 varnish',
+30 silly registry.get     age: '0',
+30 silly registry.get     connection: 'keep-alive',
+30 silly registry.get     'x-served-by': 'cache-fra1243-FRA',
+30 silly registry.get     'x-cache': 'MISS',
+30 silly registry.get     'x-cache-hits': '0',
+30 silly registry.get     'x-timer': 'S1431373029.599608,VS0,VE427' } ]
+31 silly lockFile 89b0aac4-undescore undescore@
+32 silly lockFile 89b0aac4-undescore undescore@
+33 error 404 404 Not Found: undescore
+33 error 404
+33 error 404 'undescore' is not in the npm registry.
+33 error 404 You should bug the author to publish it
+33 error 404 It was specified as a dependency of 'angular-seed'
+33 error 404
+33 error 404 Note that you can also install from a
+33 error 404 tarball, folder, or http url, or git url.
+34 error System Windows_NT 6.1.7601
+35 error command "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "undescore"
+36 error cwd c:\Users\Ante\angular-seed
+37 error node -v v0.10.33
+38 error npm -v 1.4.28
+39 error code E404
+40 verbose exit [ 1, true ]
