@@ -37,6 +37,30 @@
 		</div>
 	</tab>
 
+
+		<tab heading="Galerija">
+
+	<div style="width:46%;  display:inline-block; ">
+		<div class="galleryFrame" ng-repeat="picture in geolocation.galleryLeft">
+
+			<img class="galleryPicture" ng-src="{{picture.picturelocation}}">
+
+			<a class="galleryLink" ng-href="#User/{{picture.userid}}"><span>{{picture.username}} {{picture.usersurname}} </span></a>
+		</div>
+		</div>
+
+			<div style="width:46%;  float:right; display:inline-block">
+				<div class="galleryFrame" ng-repeat="picture in geolocation.galleryRight">
+
+			<img class="galleryPicture" ng-src="{{picture.picturelocation}}">
+
+			<a class="galleryLink" ng-href="#User/{{picture.userid}}"><span>{{picture.username}} {{picture.usersurname}}</span></a>
+		</div>
+		</div>
+
+	</tab>
+
+
 	<tab heading="Posjetitelji">
 		<div class="userRow" ng-repeat="user in geolocation.users">
 		<div class="userRowData">

@@ -25,6 +25,17 @@ angular.module('myApp.location', ['ui.map'])
 				geolocation.events.forEach(function(event){
 					event.eventdate = new Date(event.eventdate).toLocaleString('hr-HR');
 				});
+				var i;
+				geolocation.galleryRight = [];
+				geolocation.galleryLeft = [];
+				geolocation.gallery.forEach(function(picture) {
+					if (i % 2) {
+						geolocation.galleryRight.push(picture);
+					} else {
+						geolocation.galleryLeft.push(picture);
+					}
+					i++;
+				});
 				$scope.geolocation = geolocation;
 							
 					    $scope.mapOptions = {

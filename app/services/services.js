@@ -50,6 +50,12 @@ angular.module('myApp.services', [])
 					);
 }])
 
+.service('AddEvent', ['$resource', function($resource) {
+	return $resource('https://appdrenalin.herokuapp.com/api/events',
+					null, {'add' : { method:'POST'}}
+					);
+}])
+
 .service('Profile', ['$resource', function($resource) {
 	return $resource('https://appdrenalin.herokuapp.com/api/users/:id',
 					null, {'edit' : { method:'POST'}}
@@ -77,6 +83,12 @@ angular.module('myApp.services', [])
 .service('UserPrivacy', ['$resource', function($resource) {
 	return $resource('https://appdrenalin.herokuapp.com/api/users/:id/privacy',
 					null, {'change' : { method:'POST'}}
+					);
+}])
+
+.service('UserFavorites', ['$resource', function($resource) {
+	return $resource('https://appdrenalin.herokuapp.com/api/users/:id/favorites',
+					null, {'add' : { method:'POST'}}
 					);
 }])
 

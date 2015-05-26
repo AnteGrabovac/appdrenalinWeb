@@ -19,8 +19,8 @@ angular.module('myApp.user', ['ui.map'])
 	DropboxProvider.config('xs1oj3asat10fkt', 'http://localhost:8000/bower_components/ngDropbox/callback.html');
 }])
 
-.controller('ProfileCtrl', ['$scope', 'Users', '$routeParams', 'Sports', 'Countries', '$modal', 'Dropbox', 'UserProfilePicture', 'Profile', 'UserPrivacy', 'UsersProfile', 'Locations', 'UserGallery',
-	function($scope, Users, $routeParams, Sports, Countries, $modal, Dropbox, UserProfilePicture, Profile, UserPrivacy, UsersProfile, Locations, UserGallery) {
+.controller('ProfileCtrl', ['$scope', 'Users', '$routeParams', 'Sports', 'Countries', '$modal', 'Dropbox', 'UserProfilePicture', 'Profile', 'UserPrivacy', 'UsersProfile', 'Locations', 'UserGallery', 'UserFavorites', '$http',
+	function($scope, Users, $routeParams, Sports, Countries, $modal, Dropbox, UserProfilePicture, Profile, UserPrivacy, UsersProfile, Locations, UserGallery, UserFavorites, $http) {
 		$scope.model = {};
 		var map;
 		var i;
@@ -30,13 +30,16 @@ angular.module('myApp.user', ['ui.map'])
 		$scope.towns;
 		$scope.townDrop = false;
 		$scope.showGalleryForm = false;
+		$scope.isFavorite = false;
 
-		if ($scope.loggedUser && $scope.loggedUser.userid == $routeParams.id)
-			UsersGetter = UsersProfile;
+		if ($scope.loggedUser) {
+			$http.defaults.headers.common['Authorization'] = $scope.loggedUser.userid;
+		}
 		else
-			UsersGetter = Users;
+			$http.defaults.headers.common['Authorization'] = 0;
 
-		UsersGetter.get({
+
+		Users.get({
 			id: $routeParams.id
 		}, function(user) {
 
@@ -60,6 +63,13 @@ angular.module('myApp.user', ['ui.map'])
 				});
 
 				$scope.user = user;
+
+				if ($scope.loggedUser) {
+					$scope.loggedUser.favorites.forEach(function(favorite) {
+						if (favorite.userid === user.userid)
+							$scope.isFavorite = true;
+					});
+				}
 
 				if (user.userprivacy === true)
 					$scope.radioModel = 'Private';
@@ -207,6 +217,15 @@ angular.module('myApp.user', ['ui.map'])
 				}, {
 					privacy: 'true'
 				});
+		};
+
+		$scope.addFavoriteUser = function() {
+			UserFavorites.add({
+							id: $scope.loggedUser.userid
+							 }, {
+							 	favoriteuser: $scope.user.userid
+							 });
+			$scope.isFavorite = true;
 		};
 
 		$scope.openGalleryForm = function() {

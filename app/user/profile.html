@@ -5,6 +5,10 @@
 <div class="profileText">
 {{user.username}} {{ user.usersurname}}
 </div>
+<div style="padding:15px;margin-left:150px;font-size:1.4em;color:blue" ng-show="loggedUser.userid && loggedUser.userid !== user.userid">
+	<button ng-show="!isFavorite" class="btn btn-default" ng-click="addFavoriteUser()">Označi kao omiljenog</button>
+	<div style="border:1px solid blue;border-radius:5px;display:inline-block; padding:3px" ng-show="isFavorite">Omiljen</div>
+</div>
 <div class="profileMsg" ng-if="loggedUser.userid === user.userid">Moj profil - <button class="btn btn-default" ng-click="openEditForm()">Uredi</button>
 
 <div style="display:inline-block;pading-left:100px" flow-init="saveImage($flow, true)"
@@ -182,6 +186,21 @@
 		</div>
 		</div>
 
+	</tab>
+
+		<tab heading="Omiljeni korisnici">
+		<div class="userRow" ng-repeat="user in user.favorites">
+		<div class="userRowData">
+		<img ng-src="{{user.picturelocation}}">
+		 <a style="padding-left:10px" ng-href="#User/{{user.userid}}"><span>{{user.username}} {{ user.usersurname}}</span></a>
+		 <div style="margin-left:80px;padding-top:10px">{{user.townname}}</div>
+		 </div>
+		 <div class="userRowSports">
+		 <div>{{user.sports[0].sportname}}</div>
+			<div>{{user.sports[1].sportname}}</div>
+			<div style="display:inline-block;">{{user.sports[2].sportname}}</div>
+			<div style="float:right" ng-if="user.sports.length > 3">...</div>		</div>		 
+		</div>
 	</tab>
 
   </tabset>

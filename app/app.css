@@ -14,7 +14,7 @@ float:left;
 
 
 .main {
-min-height:600px;
+min-height:674px;
 }
 
 .left-bar {
@@ -24,7 +24,7 @@ background-color:orange;
 border: 2px solid green;
 float:left;
 width:20%;
-height:600px;
+height:674px;
 
 }
 .eventFeed {
@@ -32,14 +32,14 @@ background-color:orange;
 border: 2px solid green;
 overflow:auto;
 width:20%;
-height:600px;
+height:674px;
 float:right;
 }
 
 .window {
 	padding: 20px;
 display: inline-block;
-	height:600px;
+	height:668px;
 	width:60%;
 	overflow:auto;
 }
@@ -399,6 +399,7 @@ width:400px;
 .registrationFormLeft {
 	width: 30%;
 	display: inline-block;
+	float:left;
 }
 
 .profileMsg {
@@ -409,7 +410,9 @@ width:400px;
 }
 
 .registrationFormRight {
-	width: 30%;
+	padding-left:20px;
+	float:left;
+	width:20%;
 display: inline-block;
 }
 
@@ -438,7 +441,7 @@ display: inline-block;
   font-family: Verdana, Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
-  border-bottom: 1px solid #7ab900;
+  border-bottom: 1px solid green;
   zoom: 1;
 }
 #cssmenu ul:before {
