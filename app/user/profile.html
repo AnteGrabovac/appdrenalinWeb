@@ -203,6 +203,13 @@
 		</div>
 	</tab>
 
+	<tab heading="Komentari korisnika">
+	  <div class="comment" ng-repeat="comment in user.comments"> 
+		<a ng-href="#{{comment.resourcetype}}/{{comment.resourceid}}"><span>{{comment.resourcename}} </span></a>
+		--> {{ comment.commenttext}}
+	  </div>
+	</tab>
+
   </tabset>
 </div>
 </div>
